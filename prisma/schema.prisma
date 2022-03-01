@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Item {
+  item_id         String   @id
+  item_name       String
+  company         String?
+  url             String?
+  amount_in_stock Int?
+  lead_time       String?
+  requested_by    String?
+  incoming_amount Int?
+  status          String
+  upc             String?
+  need_to_reorder Boolean  @default(false)
+  cost            Decimal?
+  image           String?
+}
+
+model User {
+  id       String  @id
+  name     String?
+  email    String  @unique
+  password String
+  isAdmin  Boolean @default(false)
+}
